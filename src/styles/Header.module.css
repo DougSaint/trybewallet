@@ -1,0 +1,24 @@
+.headerBar {
+  background-color: #395b64;
+  display: flex;
+  justify-content: space-between;
+  padding: 5vh 5%;
+  width: 90%;
+}
+
+.logo {
+  width: 200px;
+}
+
+.userEmail p {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.cost p {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}

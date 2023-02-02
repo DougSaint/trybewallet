@@ -1,8 +1,14 @@
 import React from 'react';
+import Header from '../components/Header';
+import css from '../styles/container.module.css';
 
 class Wallet extends React.Component {
   render() {
-    return <div>TrybeWallet</div>;
+    return (
+      <main className={ css.container }>
+        <Header />
+      </main>
+    );
   }
 }
 
