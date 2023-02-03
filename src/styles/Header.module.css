@@ -1,8 +1,7 @@
 .headerBar {
-  background-color: #395b64;
   display: flex;
   justify-content: space-between;
-  padding: 5vh 5%;
+  padding: 2vh 5%;
   width: 90%;
 }
 
