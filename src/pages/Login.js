@@ -66,7 +66,7 @@ class Login extends React.Component {
           />
         </label>
         <button
-          className={ css.btn }
+          className={ css.LoginBtn }
           disabled={ disabled }
           onClick={ this.handleSubmit }
         >

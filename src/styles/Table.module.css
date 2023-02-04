@@ -1,0 +1,50 @@
+.table {
+  align-items: center;
+  background-color: #ffe1e1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px auto;
+  width: 90%;
+}
+
+tbody {
+  width: 100%;
+}
+
+tr {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  margin: auto;
+  width: 100%;
+}
+
+th , td {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.editButton , .deleteButton {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 20px;
+  width: 50px;
+}
+
+.editButton {
+  background-color: yellow;
+}
+
+.deleteButton {
+  background-color: red;
+}

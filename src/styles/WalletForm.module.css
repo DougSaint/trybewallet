@@ -43,7 +43,7 @@ select {
   width: 100%;
 }
 
-button {
+.addBtn {
   background-color: #90a17d;
   border: none;
   border-radius: 5px;

@@ -125,7 +125,7 @@ class WalletForm extends Component {
             </select>
           </label>
         </div>
-        <button type="submit">Adicionar despesa</button>
+        <button type="submit" className={ css.addBtn }>Adicionar despesa</button>
       </form>
     );
   }

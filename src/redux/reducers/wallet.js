@@ -1,4 +1,4 @@
-import { getTotalValue } from '../../service/TotalValue';
+import { getTotalValue } from '../../service/Helpers';
 import {
   REQUEST_SUCESSFUL,
   REQUEST_STARTED,
