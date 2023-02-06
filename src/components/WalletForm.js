@@ -29,14 +29,13 @@ class WalletForm extends Component {
     const { editor, idToEdit, expenses } = this.props;
 
     if (editor && editor !== prevProps.editor) {
-      const teste = findById(expenses, idToEdit);
-      console.log(teste);
+      const expense = findById(expenses, idToEdit);
       this.setState({
-        costValue: teste.value,
-        description: teste.description,
-        coin: teste.currency,
-        methodPayment: teste.ethod,
-        tagInput: teste.tag,
+        costValue: expense.value,
+        description: expense.description,
+        coin: expense.currency,
+        methodPayment: expense.method,
+        tagInput: expense.tag,
       });
     }
   }
