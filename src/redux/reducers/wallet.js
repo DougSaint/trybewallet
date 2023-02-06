@@ -1,9 +1,16 @@
-import { getTotalValue } from '../../service/Helpers';
+import {
+  getTotalValue,
+  removeElement,
+  orderArray,
+} from '../../service/Helpers';
 import {
   REQUEST_SUCESSFUL,
   REQUEST_STARTED,
   REQUEST_FAIL,
   CREATE_EXPENSE,
+  DELETE_EXPENSE,
+  EDIT_EXPENSE,
+  START_EDIT,
 } from '../actions/index';
 
 const INITIAL_STATE = {
@@ -21,7 +28,6 @@ const wallet = (state = INITIAL_STATE, action) => {
   case REQUEST_STARTED:
     return {
       ...state,
-      isFetching: true,
     };
   case REQUEST_SUCESSFUL:
     return {
@@ -29,15 +35,12 @@ const wallet = (state = INITIAL_STATE, action) => {
       currencies: [
         ...Object.keys(action.payload).filter((e) => e !== 'USDT'),
       ],
-      isFetching: false,
     };
   case REQUEST_FAIL:
     return {
       ...state,
       errorMsg: 'deu ruim',
-      isFetching: false,
     };
-
   case CREATE_EXPENSE:
     return {
       ...state,
@@ -46,6 +49,24 @@ const wallet = (state = INITIAL_STATE, action) => {
         { ...action.payload, id: state.expenses.length },
       ],
       totalValue: getTotalValue([...state.expenses, action.payload]),
+    };
+  case DELETE_EXPENSE:
+    return {
+      ...state,
+      expenses: removeElement(state.expenses, action.payload),
+      totalValue: getTotalValue(
+        removeElement(state.expenses, action.payload),
+      ),
+    };
+  case START_EDIT:
+    return { ...state, editor: true, idToEdit: action.payload };
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      expenses: orderArray([...state.expenses, action.payload]),
+      totalValue: getTotalValue([...state.expenses, action.payload]),
+      editor: false,
+      idToEdit: 0,
     };
   default:
     return state;

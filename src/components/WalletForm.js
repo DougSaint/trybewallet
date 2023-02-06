@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchWallet, createExpense } from '../redux/actions';
+import {
+  fetchWallet,
+  createExpense,
+  editExpense,
+  deleteExpense,
+} from '../redux/actions';
+import { findById } from '../service/Helpers';
 import css from '../styles/WalletForm.module.css';
 import { fetchApi } from '../service/Api';
 
@@ -17,6 +23,22 @@ class WalletForm extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchWallet());
+  }
+
+  componentDidUpdate(prevProps) {
+    const { editor, idToEdit, expenses } = this.props;
+
+    if (editor && editor !== prevProps.editor) {
+      const teste = findById(expenses, idToEdit);
+      console.log(teste);
+      this.setState({
+        costValue: teste.value,
+        description: teste.description,
+        coin: teste.currency,
+        methodPayment: teste.ethod,
+        tagInput: teste.tag,
+      });
+    }
   }
 
   clearForm = () => {
@@ -35,23 +57,27 @@ class WalletForm extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { dispatch } = this.props;
+    const { dispatch, editor, idToEdit } = this.props;
     const { coin, costValue, description, methodPayment, tagInput } = this.state;
-    const allCoins = await fetchApi();
     const data = {
       value: costValue,
       description,
       currency: coin,
       method: methodPayment,
       tag: tagInput,
-      exchangeRates: allCoins,
+      exchangeRates: await fetchApi(),
     };
-    dispatch(createExpense(data));
-    this.clearForm();
+    if (editor) {
+      dispatch(deleteExpense(idToEdit));
+      dispatch(editExpense({ ...data, id: idToEdit }));
+    } else {
+      dispatch(createExpense(data));
+      this.clearForm();
+    }
   };
 
   render() {
-    const { currencies } = this.props;
+    const { currencies, editor } = this.props;
     const { coin, costValue, description, methodPayment, tagInput } = this.state;
     return (
       <form className={ css.mainForm } onSubmit={ this.handleSubmit }>
@@ -125,16 +151,27 @@ class WalletForm extends Component {
             </select>
           </label>
         </div>
-        <button type="submit" className={ css.addBtn }>Adicionar despesa</button>
+        <button type="submit" className={ editor ? css.editBtn : css.addBtn }>
+          {editor ? 'Editar despesa' : 'Adicionar Despesa'}
+        </button>
       </form>
     );
   }
 }
 
 WalletForm.propTypes = {
-  currencies: PropTypes.array,
-  dispatch: PropTypes.func,
-}.isRequired;
+  currencies: PropTypes.instanceOf(Array).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  editor: PropTypes.bool,
+  expenses: PropTypes.instanceOf(Array),
+  idToEdit: PropTypes.number,
+};
+
+WalletForm.defaultProps = {
+  editor: false,
+  idToEdit: false,
+  expenses: [],
+};
 
 const mapStateToProps = (state) => {
   const { wallet } = state;

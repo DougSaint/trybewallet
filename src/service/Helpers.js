@@ -3,7 +3,7 @@ export const getValue = ({ value, exchangeRates, currency }) => {
   return result;
 };
 
-export const getTotalValue = (expenses) => {
+export const getTotalValue = (expenses = []) => {
   let totalValue = 0;
   expenses.forEach((expense) => {
     const costValue = getValue(expense);
@@ -20,3 +20,9 @@ export const getCambioRate = (exchangeRates, currency) => {
 };
 
 export const twoDecimals = (number) => parseFloat(number).toFixed(2);
+
+export const removeElement = (array, id) => array.filter((el) => el.id !== id);
+
+export const orderArray = (array) => array.sort((a, b) => a.id - b.id);
+
+export const findById = (array, id) => array.find((el) => el.id === id);

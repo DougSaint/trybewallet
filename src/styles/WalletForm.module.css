@@ -53,3 +53,14 @@ select {
   margin: 20px 0;
   padding: 10px 20px;
 }
+
+.editBtn {
+  background-color: #9b9104;
+  border: none;
+  border-radius: 5px;
+  color: #ffe1e1;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 0;
+  padding: 10px 20px;
+}

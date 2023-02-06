@@ -2,12 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import css from '../styles/Table.module.css';
-import { findCoin, getCambioRate, getValue, twoDecimals } from '../service/Helpers';
+import {
+  findCoin,
+  getCambioRate,
+  getValue,
+  twoDecimals,
+} from '../service/Helpers';
+
+import { deleteExpense, startEdit } from '../redux/actions';
 
 class Table extends React.Component {
   render() {
-    const { expenses } = this.props;
-
+    const { expenses, dispatch } = this.props;
     return (
       <table className={ css.table }>
         <thead>
@@ -24,29 +30,53 @@ class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {expenses.map(({
-            id, value, description, currency, method, tag, exchangeRates,
-          }) => (
-            <tr key={ id } className={ css.row }>
-              <td className={ css.rowItem }>{description}</td>
-              <td className={ css.rowItem }>{tag}</td>
-              <td className={ css.rowItem }>{method}</td>
-              <td className={ css.rowItem }>{twoDecimals(value)}</td>
-              <td className={ css.rowItem }>{findCoin(currency, exchangeRates)}</td>
-              <td className={ css.rowItem }>
-                {getCambioRate(exchangeRates, currency).toFixed(2)}
-              </td>
-              <td className={ css.rowItem }>
-                R$
-                {getValue({ value, currency, exchangeRates }).toFixed(2)}
-              </td>
-              <td className={ css.rowItem }>Real</td>
-              <td className={ css.buttons }>
-                <button className={ css.editButton }>Editar</button>
-                <button className={ css.deleteButton }>Excluir</button>
-              </td>
-            </tr>
-          ))}
+          {expenses.map(
+            ({
+              id,
+              value,
+              description,
+              currency,
+              method,
+              tag,
+              exchangeRates,
+            }) => (
+              <tr key={ id } className={ css.row }>
+                <td className={ css.rowItem }>{description}</td>
+                <td className={ css.rowItem }>{tag}</td>
+                <td className={ css.rowItem }>{method}</td>
+                <td className={ css.rowItem }>{twoDecimals(value)}</td>
+                <td className={ css.rowItem }>
+                  {findCoin(currency, exchangeRates)}
+                </td>
+                <td className={ css.rowItem }>
+                  {getCambioRate(exchangeRates, currency).toFixed(2)}
+                </td>
+                <td className={ css.rowItem }>
+                  R$
+                  {getValue({ value, currency, exchangeRates }).toFixed(2)}
+                </td>
+                <td className={ css.rowItem }>Real</td>
+                <td className={ css.buttons }>
+                  <button
+                    className={ css.editButton }
+                    data-testid="edit-btn"
+                    onClick={ () => {
+                      dispatch(startEdit(id));
+                    } }
+                  >
+                    Editar
+                  </button>
+                  <button
+                    className={ css.deleteButton }
+                    data-testid="delete-btn"
+                    onClick={ () => dispatch(deleteExpense(id)) }
+                  >
+                    Excluir
+                  </button>
+                </td>
+              </tr>
+            ),
+          )}
         </tbody>
       </table>
     );
