@@ -36,13 +36,14 @@ describe('Testando componente de formulario', () => {
     const valueInput = screen.queryByTestId('value-input');
     const descriptionInput = screen.queryByTestId('description-input');
     const currencyInput = screen.queryByTestId('currency-input');
+    const methodInput = screen.queryByTestId('method-input');
 
     userEvent.type(valueInput, '10');
     userEvent.type(descriptionInput, 'testando');
     await waitFor(() => {
       userEvent.selectOptions(currencyInput, 'USD');
     });
-    userEvent.selectOptions(screen.getByTestId('method-input'), 'Cartão de crédito');
+    userEvent.selectOptions(methodInput, 'Cartão de crédito');
     userEvent.selectOptions(screen.getByTestId('tag-input'), 'Lazer');
 
     act(() => {
