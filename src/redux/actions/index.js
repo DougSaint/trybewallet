@@ -20,22 +20,9 @@ export const requestSucessful = (data) => ({
   payload: data,
 });
 
-export const requestWallet = () => ({
-  type: REQUEST_STARTED,
-});
-
-export const requestFail = () => ({
-  type: REQUEST_FAIL,
-});
-
 export const fetchWallet = () => async (dispatch) => {
-  dispatch(requestWallet);
-  try {
-    const data = await fetchApi();
-    dispatch(requestSucessful(data));
-  } catch (e) {
-    dispatch(requestFail());
-  }
+  const data = await fetchApi();
+  dispatch(requestSucessful(data));
 };
 
 export const createExpense = (expense) => ({

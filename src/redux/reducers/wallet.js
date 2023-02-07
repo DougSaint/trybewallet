@@ -5,8 +5,6 @@ import {
 } from '../../service/Helpers';
 import {
   REQUEST_SUCESSFUL,
-  REQUEST_STARTED,
-  REQUEST_FAIL,
   CREATE_EXPENSE,
   DELETE_EXPENSE,
   EDIT_EXPENSE,
@@ -25,21 +23,12 @@ const INITIAL_STATE = {
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case REQUEST_STARTED:
-    return {
-      ...state,
-    };
   case REQUEST_SUCESSFUL:
     return {
       ...state,
       currencies: [
         ...Object.keys(action.payload).filter((e) => e !== 'USDT'),
       ],
-    };
-  case REQUEST_FAIL:
-    return {
-      ...state,
-      errorMsg: 'deu ruim',
     };
   case CREATE_EXPENSE:
     return {
