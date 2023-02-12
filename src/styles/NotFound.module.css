@@ -1,0 +1,24 @@
+.notFound {
+  display: grid;
+  margin: auto;
+  place-content: center;
+  text-align: center;
+}
+
+.notFound__gif {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.notFound__title {
+  color: #333;
+  font-size: 36px;
+  margin-top: 20px;
+}
+
+.notFound__text {
+  color: #999;
+  font-size: 18px;
+  margin-top: 20px;
+}

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import logo from '../imgs/logoTrybeWallet.svg';
 import cash from '../imgs/cash.svg';
 import userImg from '../imgs/user.svg';
@@ -11,7 +12,9 @@ class Header extends Component {
     const { email, totalValue } = this.props;
     return (
       <header className={ css.headerBar }>
-        <img src={ logo } className={ css.logo } alt="logoTrybe" />
+        <Link to="/carteira">
+          <img src={ logo } className={ css.logo } alt="logoTrybe" />
+        </Link>
         <div className={ css.cost }>
           <p>
             <img src={ cash } alt="cash" />
