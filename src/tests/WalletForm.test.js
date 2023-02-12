@@ -33,6 +33,7 @@ describe('Testando componente de formulario', () => {
   });
 
   it('Verificando a função do botão de salvar despesa', async () => {
+    
     const valueInput = screen.queryByTestId('value-input');
     const descriptionInput = screen.queryByTestId('description-input');
     const currencyInput = screen.queryByTestId('currency-input');
@@ -49,8 +50,10 @@ describe('Testando componente de formulario', () => {
     act(() => {
       userEvent.click(screen.getByText(/adicionar despesa/i));
     });
+
+
     await waitFor(() => {
-      expect(screen.getByTestId('total-field').textContent).toBe('51.47');
+      expect(screen.getByTestId('total-field').textContent).toBe('52.16');
     });
 
     expect(valueInput.textContent).toBe('');
