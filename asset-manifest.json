@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/trybewallet/static/css/main.42442f1f.css",
+    "main.js": "/trybewallet/static/js/main.1997e4f4.js",
+    "static/media/logoTrybeWallet.svg": "/trybewallet/static/media/logoTrybeWallet.e6f155f1e02cccb80d6cd290a24a48bd.svg",
+    "static/media/cash.svg": "/trybewallet/static/media/cash.61b96e53db95865375c4f1299b39d1f3.svg",
+    "static/media/user.svg": "/trybewallet/static/media/user.bb28b6ee5ed63b019518c906ff503058.svg",
+    "index.html": "/trybewallet/index.html",
+    "main.42442f1f.css.map": "/trybewallet/static/css/main.42442f1f.css.map",
+    "main.1997e4f4.js.map": "/trybewallet/static/js/main.1997e4f4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.42442f1f.css",
+    "static/js/main.1997e4f4.js"
+  ]
+}
