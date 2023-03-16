@@ -3,7 +3,7 @@
 
 Este projeto é uma carteira de controle de gastos que inclui um conversor de moedas. Ele foi desenvolvido com React e Redux, e permite que os usuários adicionem, editem e removam seus gastos. A aplicação também exibe uma tabela de gastos e o total de gastos convertidos para a moeda escolhida.
 
-  
+<h3> Você pode testar a aplicação [Clique aqui](https://dougsaint.github.io/trybewallet)  
 
 <h2>Instalação	
 
